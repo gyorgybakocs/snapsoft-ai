@@ -1,6 +1,10 @@
+import json
+
 def handler(event, context):
-    print("Hello from Lambda!")
+    print("STARTING PROCESS")
+    print(json.dumps(event))
+
     return {
         "statusCode": 200,
-        "body": "hello world"
+        "body": "ok"
     }
