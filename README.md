@@ -65,7 +65,7 @@ data "aws_caller_identity" "current" {}
 
 locals {
   account_id  = data.aws_caller_identity.current.account_id
-  user_suffix = replace(lower(data.aws_caller_identity.current.user_id), "/[^a-z0-9]/", "-")
+  user_suffix = replace(lower(data.aws_caller_identity.current.user_id), v"/[^a-z0-9]/", "-")
 }
 ```
 
@@ -144,3 +144,29 @@ terraform destroy -auto-approve
 ```
 
 Force destroy is enabled on S3 buckets to ensure removal.
+
+---
+
+## 🧪 Development & Testing
+
+This project uses [uv](https://docs.astral.sh/uv/), a standalone Python manager, to ensure tests run in a consistent environment without requiring `pip`, `venv`, or `apt` permissions on the host system.
+
+### Running Tests Locally
+
+The testing suite validates the Lambda ETL logic and generates a visual HTML coverage report.
+
+**1. Execute the automated setup and test script:**
+
+This script will automatically install `uv` (locally to your user home), configure a Python 3.12 environment, and run all tests.
+
+```bash
+chmod +x setup_tests.sh
+./setup_tests.sh
+```
+If you prefer to run it manually or integrate it into a CI/CD pipeline:
+
+```bash
+uv run --python 3.12 --with pytest-cov --with-requirements requirements.txt \
+   python -m pytest --cov=lambda --cov-report=html
+```
+After the tests complete, a detailed HTML report is generated. You can inspect exactly which lines of the Lambda functions were executed: htmlcov/index.html
