@@ -1,3 +1,4 @@
+# Grants S3 the specific permission to invoke the processor function.
 resource "aws_lambda_permission" "allow_landing_invoke" {
   statement_id = "AllowLandingBucketInvoke"
   action = "lambda:InvokeFunction"
@@ -6,6 +7,7 @@ resource "aws_lambda_permission" "allow_landing_invoke" {
   source_arn = aws_s3_bucket.landing.arn
 }
 
+# Event notification setup: triggers the pipeline only for .csv files in the 'input/' prefix.
 resource "aws_s3_bucket_notification" "landing_object_created" {
   bucket = aws_s3_bucket.landing.id
 
@@ -16,5 +18,6 @@ resource "aws_s3_bucket_notification" "landing_object_created" {
     filter_suffix = ".csv"
   }
 
+  # Ensure permissions exist before S3 attempts to configure the notification.
   depends_on = [aws_lambda_permission.allow_landing_invoke]
 }
