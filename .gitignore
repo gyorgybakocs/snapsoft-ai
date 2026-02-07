@@ -37,4 +37,5 @@ override.tf.json
 terraform.rc
 
 infra/.build/
+infra/response.json
 *.zip
