@@ -112,12 +112,16 @@ s3://$LANDING_BUCKET/input/ml_sample_data_snapsoft.csv
 
 Notebook: `notebooks/car_price_prediction.ipynb`
 
-Features:
+**Key Features & Workflow:**
 
-- **Dynamic S3 Lookup** – no hardcoded bucket names.
-- **80/20 Train/Test Split** before preprocessing.
-- **Model:** Random Forest Regressor.
-- **Diagnostics:** Actual vs Predicted chart, Residual Plot.
+- **Dynamic Data Discovery:** Automatically locates the curated dataset in S3 without hardcoded paths.
+- **Robust Preprocessing:** Handles missing values (Imputation) and categorical features (One-Hot Encoding) with transparent diagnostics.
+- **Model Training:** Random Forest Regressor (80/20 Train/Test split).
+- **Business Logic Integration:** Implements a **"Safety Buffer" strategy (Underestimation)** to prioritize rapid inventory turnover, ensuring predicted prices are competitive.
+- **Advanced Diagnostics:**
+    - **Actual vs. Predicted:** Visual comparison of model fit.
+    - **Residual Analysis:** Verifies that errors are randomly distributed (or intentionally shifted).
+    - **Error Distribution:** Histograms confirming the intentional pricing bias to meet business safety goals.
 
 ---
 

@@ -19,7 +19,7 @@ resource "aws_lambda_function" "processor" {
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
   # Conservative limits; memory and time scaled for small-to-medium CSV processing.
-  timeout = 10
+  timeout = 30
   memory_size = 512
 
   # Dynamic configuration via environment variables for portability between stages.
