@@ -65,7 +65,7 @@ data "aws_caller_identity" "current" {}
 
 locals {
   account_id  = data.aws_caller_identity.current.account_id
-  user_suffix = replace(lower(data.aws_caller_identity.current.user_id), v"/[^a-z0-9]/", "-")
+  user_suffix = replace(lower(data.aws_caller_identity.current.user_id), "/[^a-z0-9]/", "-")
 }
 ```
 
