@@ -1,0 +1,7 @@
+# Production dependencies (Lambda logic)
+pandas==2.2.2
+
+# Development / Testing dependencies
+pytest==8.1.1
+boto3==1.40.4
+moto

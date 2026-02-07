@@ -39,3 +39,8 @@ terraform.rc
 infra/.build/
 infra/response.json
 *.zip
+
+.coverage
+htmlcov/
+*/__pycache__/
+.pytest_cache

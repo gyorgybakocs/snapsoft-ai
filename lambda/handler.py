@@ -9,6 +9,10 @@ from processor import CarDataProcessor
 #   Lambda execution environment reuse.
 s3_client = boto3.client('s3')
 
+# Only for requirements.txt
+# print(f"--- PANDAS VERSION: {pd.__version__} ---")
+# print(f"--- BOTO VERSION: {boto3.__version__} ---")
+
 def handler(event, context):
     """
     PURPOSE:
