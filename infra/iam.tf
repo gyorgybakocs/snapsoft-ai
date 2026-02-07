@@ -24,19 +24,22 @@ resource "aws_iam_policy" "lambda_s3_access" {
   name        = "${var.name_prefix}-lambda-s3-access"
   description = "Allow Lambda to read from landing bucket and write to curated bucket"
 
+  # The jsonencode function ensures the policy document is valid JSON and  properly escapes dynamic resource ARNs.
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "ReadLanding"
+        Sid    = "ReadLanding"
         Effect = "Allow"
         Action = ["s3:GetObject"]
+        # Resource is dynamically linked to the landing bucket defined in s3.tf.
         Resource = ["${aws_s3_bucket.landing.arn}/*"]
       },
       {
-        Sid = "WriteCurated"
+        Sid    = "WriteCurated"
         Effect = "Allow"
         Action = ["s3:PutObject"]
+        # Resource is dynamically linked to the curated bucket defined in s3.tf.
         Resource = ["${aws_s3_bucket.curated.arn}/*"]
       }
     ]

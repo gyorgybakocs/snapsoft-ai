@@ -1,4 +1,5 @@
 # Entry point for raw CSV files; acts as the trigger source for the pipeline.
+# Dynamically named with account ID and user suffix to ensure global uniqueness.
 resource "aws_s3_bucket" "landing" {
   bucket = "${var.name_prefix}-landing-${local.account_id}-${local.user_suffix}"
   force_destroy = true 
@@ -14,6 +15,7 @@ resource "aws_s3_bucket_public_access_block" "landing_block" {
 }
 
 # Storage for cleaned and normalized datasets ready for ML consumption.
+# Uses dynamic naming to prevent "BucketAlreadyExists" errors during deployment.
 resource "aws_s3_bucket" "curated" {
   bucket = "${var.name_prefix}-curated-${local.account_id}-${local.user_suffix}"
   force_destroy = true
