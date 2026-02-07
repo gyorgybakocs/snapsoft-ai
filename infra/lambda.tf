@@ -17,7 +17,6 @@ resource "aws_lambda_function" "processor" {
   timeout = 10
   memory_size = 512
 
-  # Injecting bucket names and prefixes from Terraform locals/variables
   environment {
     variables = {
       TARGET_BUCKET = aws_s3_bucket.curated.id
@@ -25,6 +24,5 @@ resource "aws_lambda_function" "processor" {
     }
   }
 
-  # Managed AWS Layer for Pandas (optimized for Python 3.12)
   layers = ["arn:aws:lambda:eu-central-1:336392948345:layer:AWSSDKPandas-Python312:13"]
 }

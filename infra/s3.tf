@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "landing" {
-  bucket = "${var.name_prefix}-landing"
+  bucket = "${var.name_prefix}-landing-${local.account_id}-${local.user_suffix}"
+  force_destroy = true 
 }
 
 resource "aws_s3_bucket_public_access_block" "landing_block" {
@@ -11,7 +12,8 @@ resource "aws_s3_bucket_public_access_block" "landing_block" {
 }
 
 resource "aws_s3_bucket" "curated" {
-  bucket = "${var.name_prefix}-curated"
+  bucket = "${var.name_prefix}-curated-${local.account_id}-${local.user_suffix}"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "curated_block" {

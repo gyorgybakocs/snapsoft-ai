@@ -1,4 +1,3 @@
-# Attributes to be dropped (PII and non-predictive data)
 COLUMNS_TO_DROP = [
     'car_ID', 
     'ownername', 
@@ -8,14 +7,12 @@ COLUMNS_TO_DROP = [
     'saledate'
 ]
 
-# Critical attributes for row filtering
 CRITICAL_ATTRIBUTES = [
     'Price',
     'carbody',
     'fueltype'
 ]
 
-# Correction map for common brand typos
 BRAND_CORRECTION = {
     'maxda': 'mazda', 
     'porcshce': 'porsche', 

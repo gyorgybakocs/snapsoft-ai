@@ -21,7 +21,6 @@ class CarDataProcessor:
 
     def _normalize_brand_names(self):
         if 'CarName' in self.df.columns:
-            # Extract brand (first word) and fix typos
             self.df['brand'] = self.df['CarName'].str.split(' ').str[0].str.lower().replace(BRAND_CORRECTION)
             self.df = self.df.dropna(subset=['brand']).drop(columns=['CarName'])
 
