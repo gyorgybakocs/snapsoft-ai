@@ -9,5 +9,5 @@ variable "aws_region" {
 variable "name_prefix" {
   type        = string
   description = "Global-unique prefix for resource names (better than a random...)"
-  default     = "snapsoft-bgds-example"
+  default     = "snapsoft"
 }
